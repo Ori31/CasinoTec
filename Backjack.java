@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Blackjack {
@@ -43,23 +44,36 @@ public class Blackjack {
         char deseo;
         boolean jugadorTieneBlackjack = false;
         int opcion;
+
         // Variables del croupier
         int cartaCroupier = 0;
         int puntuajeCroupier = 0; 
         
         do{
+    
             System.out.println("==== Menú principal ====");
             System.out.println("1. Jugar");
             System.out.println("2. Ver reglas");
             System.out.println("3. Salir");
             System.out.println("Elige una opción ");
-            opcion = sc.nextInt();
-            sc.nextLine();
-               
+
+            try{
+                opcion = sc.nextInt();
+                sc.nextLine();
+
+            } catch (InputMismatchException I){
+                System.out.println("Por favor introduzca el numero correpondiente a la opción.");
+                sc.nextLine();
+                opcion = 0;
+                Thread.sleep(1000);
+                System.out.println(" ");
+                continue;
+
+            } 
+
             switch (opcion) {
                 
                 case 1: //Jugar
-
 
                 //Se resetean las variables en cada ciclo
                 puntuajeJugador = 0;
